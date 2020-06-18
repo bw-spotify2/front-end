@@ -1,17 +1,30 @@
-import React, {  } from 'react';
-import './App.css';
+import React from 'react';
 import styled from 'styled-components';
+import NavBar from './Nav';
+import SignUp from './SignUp';
 
 const Wrapper = styled.div`
-  background-color: black;
+  margin: .5rem;
+`;
+
+const Banner = styled.div`
+  margin: 2rem;
+  text-align: center;
+  color: #2A2C2A;
+  font-size: 1.5rem;
+  -webkit-text-stroke-width: .1rem;
+  -webkit-text-stroke-color: #A1A0A0;
 `;
 
 function App() {
   return (
-    <Wrapper className="App">
     
-      <p>Hello
-      </p>
+    <Wrapper className="App">
+      <NavBar />
+      <Banner>
+        <h2>We find the music so all you have to do is enjoy!</h2>
+      </Banner>
+      <SignUp />
     </Wrapper>
   );
 }
