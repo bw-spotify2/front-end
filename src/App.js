@@ -8,7 +8,7 @@ function App() {
     <Router>
     <div className="App">
       <Switch>
-        <Route></Route>
+        <Route path='/login' component={Login}></Route>
       </Switch>
     </div>
     </Router>
