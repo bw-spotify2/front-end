@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import NavBar from './Nav';
-import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 const Wrapper = styled.div`
   margin: .5rem;
@@ -24,7 +24,7 @@ function App() {
       <Banner>
         <h2>We find the music so all you have to do is enjoy!</h2>
       </Banner>
-      <SignUp />
+      <SignIn />
     </Wrapper>
   );
 }
