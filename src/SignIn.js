@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import axiosWithAuth from "./utils/axiosWithAuth";
+
 
 const FormContainer = styled.form`
 	display: flex;
@@ -44,22 +47,33 @@ const FormTitle = styled.div`
 	margin-bottom: 10px;
 `;
 
-
 const SignIn = () => {
-    const [user, setUser] = useState({
-        username: "",
-        password: "",
-    });
-    
-    const handleChanges = (e) => {
-        setUser({
-            ...user,
-            [e.target.name]: e.target.value,
-        });
-    };
-    
+    // const {push} = useHistory()
+	const [user, setUser] = useState({
+		username: "",
+		password: "",
+	});
+
+	const handleChanges = (e) => {
+		setUser({
+			...user,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		axiosWithAuth()
+			.post("api/login")
+			.then((res) => {
+				console.log(res);
+				localStorage.setItem("token", res.data.payload);
+				// push("/songData");
+			});
+	};
+
 	return (
-		<FormContainer>
+		<FormContainer onSubmit={handleSubmit}>
 			<FormTitle>
 				<H3>Please Sign In</H3>
 			</FormTitle>
@@ -79,6 +93,6 @@ const SignIn = () => {
 			<Submission type="submit">Sign In</Submission>
 		</FormContainer>
 	);
-}
+};
 
 export default SignIn;
