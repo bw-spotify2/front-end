@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import axiosWithAuth from "./utils/axiosWithAuth";
 
-
 const FormContainer = styled.form`
 	display: flex;
 	flex-direction: column;
@@ -48,7 +47,7 @@ const FormTitle = styled.div`
 `;
 
 const SignIn = () => {
-    // const {push} = useHistory()
+	const { push } = useHistory();
 	const [user, setUser] = useState({
 		username: "",
 		password: "",
@@ -68,12 +67,14 @@ const SignIn = () => {
 			.then((res) => {
 				console.log(res);
 				localStorage.setItem("token", res.data.payload);
-				// push("/songData");
-			});
+				push("/songs");
+			})
+			.catch((err) => console.log(err.message, err.response));
 	};
 
 	return (
-		<FormContainer id='sign-up' onSubmit={handleSubmit}>
+		
+		<FormContainer id="sign-up" onSubmit={handleSubmit}>
 			<FormTitle>
 				<H3>Please Sign In</H3>
 			</FormTitle>
@@ -90,8 +91,9 @@ const SignIn = () => {
 				name="password"
 				value={user.password}
 				onChange={handleChanges}></Inputs>
-			<Submission type="submit">Sign In</Submission>
+			<Submission><button type='submit'>Sign In</button></Submission>
 		</FormContainer>
+		
 	);
 };
 

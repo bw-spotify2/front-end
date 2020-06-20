@@ -1,0 +1,41 @@
+
+
+.search-container {
+  text-align: center;
+  font-family: Rubik, sans-serif;
+}
+
+.search-form label{
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  
+}
+
+.search-form input {
+  width: 250px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+  font-family: Rubik, sans-serif;
+  
+}
+
+.search-button {
+  width:250px;
+  padding: 5px;
+  font-family: Rubik, sans-serif;
+  border: slategrey solid;
+  border-radius: 10px;
+  font-size: 18px;
+  background-color: black;
+  color: white;
+ 
+}
+
+.search-button:hover {
+  background:#1DB954;
+  color: black;
+  cursor: pointer;
+}
