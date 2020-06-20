@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, Route } from 'react-router-dom';
-import Songs from './Songs';
+import { Link } from 'react-router-dom';
+
+const H1 = styled.h1`
+	@media screen and (max-width: 500px) {
+		display: none;
+	}
+`;
 
 const Nav = styled.div`
 	text-align: center;
@@ -28,7 +33,7 @@ const NavLink = styled.a`
 function NavBar() {
 	return (
 		<Nav>
-			<h1 id='app-header'>Spotify Song Suggester</h1>
+			<H1 id='app-header'>Spotify Song Suggester</H1>
 			<Link to='/'><NavLink>Home</NavLink></Link>
 			<Link to="/about"><NavLink>About</NavLink></Link>
 			{/* Songs link is temporary so I can start working on the cards */}
