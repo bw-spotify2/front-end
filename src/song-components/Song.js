@@ -8,6 +8,10 @@ const CardWrapper = styled.div`
     padding: 5px;
     height: 450px;
     width: 450px;
+
+    @media screen and (max-width: 460px) {
+        max-width: 350px;
+    }
 `;
 
 const ContentWrapper = styled.div`

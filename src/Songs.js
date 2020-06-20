@@ -15,15 +15,17 @@ const H2 = styled.h2`
 
 const PageContainer = styled.div`
     display: flex;
-    margin-top: 2%;
+    justify-content: center;
+    
 
     @media screen and (max-width: 800px) {
         flex-direction: column;
+        justify-content:  center;
     }
 `;
 
 const SearchContainer = styled.div`
-    width: 20%;
+    width: 375px;
     border: 1px solid white;
 
     @media screen and (max-width: 800px) {
@@ -32,17 +34,17 @@ const SearchContainer = styled.div`
 `;
 
 const SongContainer = styled.div`
-    width: 80%;
+    // width: 80%;
     display: flex;
-    justify-content: space-evenly;
 
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1250px) {
         flex-direction: column;
         align-items: center;
+        // width: 70%;
     }
 
     @media screen and (max-width: 800px) {
-        width: 100%;
+        // width: 100%;
     }
 `;
 
@@ -51,24 +53,26 @@ function Songs() {
     return (
         <>
          <H2>Artist - Song Title</H2>
+         
         <PageContainer>
                
 
-            <SearchContainer>
-                <Search />  
-            </SearchContainer>
-        
-            <SongContainer>
-                <div>
-                    <Album />
-                </div>
-                <div>
-                    <Song />
-                </div>
+               <SearchContainer>
+                   <Search />  
+               </SearchContainer>
+           
+               <SongContainer>
+                   <div>
+                       <Album />
+                   </div>
+                   <div>
+                       <Song />
+                   </div>
+   
+               </SongContainer>
+   
+           </PageContainer>
 
-            </SongContainer>
-
-        </PageContainer>
         </>
     );
 }
