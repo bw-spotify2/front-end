@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { Link, Route } from 'react-router-dom';
+import Songs from './Songs';
 
 const Nav = styled.div`
 	text-align: center;
@@ -8,9 +10,12 @@ const Nav = styled.div`
 	background-image: linear-gradient(#2a2c2a, #a1a0a0 5%, #2a2c2a);
 `;
 
-const Link = styled.a`
+const NavLink = styled.a`
     margin: .5rem;
-    padding: .5rem;
+	padding: .5rem;
+	text-decoration: none;
+	color: white;
+	
 
     &:hover {
         background-color: #A1A0A0;
@@ -23,10 +28,11 @@ const Link = styled.a`
 function NavBar() {
 	return (
 		<Nav>
-			<h1>Spotify Song Suggester</h1>
-			<div>
-				<Link>About</Link>
-			</div>
+			<h1 id='app-header'>Spotify Song Suggester</h1>
+			<Link to='/'><NavLink>Home</NavLink></Link>
+			{/* Songs link is temporary so I can start working on the cards */}
+			<Link to="/songs"><NavLink>Songs</NavLink></Link>
+			
 		</Nav>
 	);
 }

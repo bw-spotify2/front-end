@@ -56,3 +56,12 @@ img {
 ul, li {
   list-style-type: dot;
 }
+
+@media screen and (max-width: 400px) {
+	#app-callout {
+		display: none;
+	}
+	#sign-up {
+		top: 15%;
+	}
+}
