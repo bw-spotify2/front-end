@@ -73,7 +73,7 @@ const SignIn = () => {
 	};
 
 	return (
-		<FormContainer onSubmit={handleSubmit}>
+		<FormContainer id='sign-up' onSubmit={handleSubmit}>
 			<FormTitle>
 				<H3>Please Sign In</H3>
 			</FormTitle>

@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import NavBar from "./Nav";
 import SignIn from "./SignIn";
+import Songs from './Songs';
+import About from './About';
 
 const Wrapper = styled.div`
 	margin: 0.5rem;
@@ -23,10 +25,12 @@ function App() {
 			<Wrapper className="App">
 				<NavBar />
 				<Banner>
-					<h2>We find the music so all you have to do is enjoy!</h2>
+					<h2 id='app-callout'>We find the music so all you have to do is enjoy!</h2>
 				</Banner>
 				<Switch>
 					<Route exact path="/" component={SignIn}></Route>
+					<Route path='/songs' component={Songs}></Route>
+					<Route path='/about' component={About}></Route>
 				</Switch>
 			</Wrapper>
 		</Router>
