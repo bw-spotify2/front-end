@@ -30,6 +30,7 @@ function NavBar() {
 		<Nav>
 			<h1 id='app-header'>Spotify Song Suggester</h1>
 			<Link to='/'><NavLink>Home</NavLink></Link>
+			<Link to="/about"><NavLink>About</NavLink></Link>
 			{/* Songs link is temporary so I can start working on the cards */}
 			<Link to="/songs"><NavLink>Songs</NavLink></Link>
 			
