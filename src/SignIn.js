@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import axiosWithAuth from "./utils/axiosWithAuth";
+import axios from 'axios'
 
 const FormContainer = styled.form`
 	display: flex;
@@ -62,14 +63,18 @@ const SignIn = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		axiosWithAuth()
-			.post("api/login")
+		axios
+			.get("https://spotify-api-project.herokuapp.com/api/frontend/users")
 			.then((res) => {
 				console.log(res);
-				localStorage.setItem("token", res.data.payload);
+				//localStorage.setItem("token", res.data.payload);
 				push("/songs");
 			})
 			.catch((err) => console.log(err.message, err.response));
+			setUser({
+				username: '',
+				password:''
+			})
 	};
 
 	return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from './song-components/Search';
+import SongSearch from './song-components/SongSearch';
 import styled from 'styled-components';
 import Album from './song-components/Album';
 import Song from './song-components/Song';
@@ -25,6 +25,7 @@ const PageContainer = styled.div`
     @media screen and (max-width: 800px) {
         flex-direction: column;
         justify-content:  center;
+        
     }
 `;
 
@@ -70,7 +71,7 @@ function Songs() {
                
 
                <SearchContainer>
-                   <Search />  
+                   <SongSearch />  
                </SearchContainer>
            
                <SongContainer>
