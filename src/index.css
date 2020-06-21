@@ -54,7 +54,7 @@ img {
   margin: 0 auto;
 }
 ul, li {
-  list-style-type: dot;
+  list-style-type: none;
 }
 
 @media screen and (max-width: 400px) {
