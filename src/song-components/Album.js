@@ -35,11 +35,21 @@ const AlbumInfo = styled.div`
     color:white;
 `;
 
+const Listen = styled.div`
+    margin-top: 15px;
+    padding: 5px;
+
+    &:hover {
+        background-color: white;
+        border-radius: 10px;
+    }
+`;
+
 
 function Album() {
     return (
         <CardWrapper>
-               <H3>Album Title</H3> 
+               <H3>Album | Album Title Here</H3> 
             < hr/>
             <ContentWrapper>
 
@@ -47,11 +57,10 @@ function Album() {
                     <img alt='album-artwork' src='https://i.scdn.co/image/ab67616d00001e021a46e59b547c2c356403a478' />
                 </ImgContainer>
                 <AlbumInfo>
-                    <ul>
-                        <li>Release In: Year</li>
-                        <li>Tracks: num</li>
-                        <li>Genre: genre, genre, genre, genre, genre, genre. </li>
-                    </ul>
+                    <Listen>
+                        <img src="https://i.imgur.com/UMlMHPP.png" alt="listen-on-spotify"></img>
+                        {/* image source not pulling in from public folder, no idea why. Will try to re-asociate later */}
+                    </Listen>
                 </AlbumInfo>
 
             </ContentWrapper>

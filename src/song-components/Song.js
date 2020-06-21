@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+// import SongVisual from './song-components/SongVisual'
 
 const CardWrapper = styled.div`
     background-color: #404946;
@@ -26,7 +27,12 @@ const H3 = styled.h3`
 
 const SongInfo = styled.div`
     color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
+
+
 
 
 function Song() {
@@ -36,11 +42,9 @@ function Song() {
             < hr/>
             <ContentWrapper>
                 <SongInfo>
-                    <ul>
-                        <li>Release In</li>
-                        <li> X Tracks</li>
-                        <li>Genere: </li>
-                    </ul>
+                    <div>
+                      <p>Song data &amp; visualization will go here</p>
+                    </div>
                 </SongInfo>
 
             </ContentWrapper>

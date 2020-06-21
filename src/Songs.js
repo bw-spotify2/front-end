@@ -3,6 +3,10 @@ import Search from './song-components/Search';
 import styled from 'styled-components';
 import Album from './song-components/Album';
 import Song from './song-components/Song';
+// import Song from '../public/spotify_listen_logo.png'
+
+const Title = styled.div`
+`;
 
 const H2 = styled.h2`
     text-align: center;
@@ -52,7 +56,15 @@ const SongContainer = styled.div`
 function Songs() {
     return (
         <>
-         <H2>Artist - Song Title</H2>
+        <Title>
+            <div>
+                <H2>Artist | Song Title</H2>
+            </div>
+            <div>
+            
+            </div>
+
+        </Title> 
          
         <PageContainer>
                
