@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth'
+import TrackContext from '../context/TrackContext'
 import './SongSearch.css'
 
 const SongSearch = () => {
-	const [song, setSong] = useState({
-		songName: "",
-	});
+	const [state, setState] = useContext(TrackContext)
+	console.log('tracks data',state)
+	const [songTitle, setSongTitle] = useState('')
 
 	const handleSongChange = (e) => {
-		setSong(e.target.value);
+		setSongTitle(e.target.value);
 	};
 
 	const songSubmit = (e) => {
@@ -24,7 +25,7 @@ const SongSearch = () => {
 	return (
 		<div className="search-container">
 			<img
-      style={{height:'100px', borderRadius: '50%'}}
+      style={{height:'80px', borderRadius: '50%'}}
 				src="https://developer.spotify.com/assets/branding-guidelines/icon1@2x.png"
 				alt="spotify logo"></img>
 			<h3>Song Finder</h3>
@@ -34,7 +35,7 @@ const SongSearch = () => {
 						type="text"
 						name="search"
 						placeholder=" Enter Song Title....."
-						value={song.songName}
+						value={songTitle.songName}
 						onChange={handleSongChange}></input>
 				</label>
         <button className='search-button'type='submit'>Search</button>
