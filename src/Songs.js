@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import Search from './song-components/Search';
 import styled from 'styled-components';
 import Album from './song-components/Album';
@@ -52,10 +53,14 @@ const SongContainer = styled.div`
     }
 `;
 
+=======
+import SongSearch from './SongSearch'
+>>>>>>> 3fc0c8de47b7660e04fbc9019a27d309c4dd4de1
 
 function Songs() {
     return (
         <>
+<<<<<<< HEAD
         <Title>
             <div>
                 <H2>Artist | Song Title</H2>
@@ -85,6 +90,10 @@ function Songs() {
    
            </PageContainer>
 
+=======
+        <SongSearch/>
+        <div>Songs will be here</div>
+>>>>>>> 3fc0c8de47b7660e04fbc9019a27d309c4dd4de1
         </>
     );
 }

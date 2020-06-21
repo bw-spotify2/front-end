@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 
 const H1 = styled.h1`
@@ -7,6 +8,10 @@ const H1 = styled.h1`
 		display: none;
 	}
 `;
+=======
+import { Link, Route } from 'react-router-dom';
+
+>>>>>>> 3fc0c8de47b7660e04fbc9019a27d309c4dd4de1
 
 const Nav = styled.div`
 	text-align: center;
