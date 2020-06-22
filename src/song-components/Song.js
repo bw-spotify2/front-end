@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-// import SongVisual from './song-components/SongVisual'
+import axios from 'axios';
 
 const CardWrapper = styled.div`
     background-color: #404946;
@@ -33,9 +33,20 @@ const SongInfo = styled.div`
 `;
 
 
-
-
 function Song() {
+
+    const [song, setSong] = useState([])
+
+    useEffect(() => {
+        axios
+            .get('https://spotify-api-project.herokuapp.com/api/frontend/savedsongs')
+            .then((res) => {
+                // console.log('response from saved songs', res.data);
+                setSong(res)
+            })
+            .catch((err) => console.log('error connecting to saved songs'))
+    }, []);
+
     return (
         <CardWrapper>
                <H3>Song Title</H3> 
