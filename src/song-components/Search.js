@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
 
+const SearchBar = styled.div`
+
+`;
+
+const SearchResults = styled.div`
+
+`;
 function Search() {
+
+
     return (
-        <div>Search Bar Here</div>
+        <form>
+            <SearchBar>
+                <label htmlFor='search'>Search:</label>
+                <input id='search' name='textfield' placeholder='Search' />
+
+            </SearchBar>
+            <SearchResults>
+      
+            </SearchResults>
+        </form>
+        
     );
 }
 
