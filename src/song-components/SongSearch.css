@@ -42,3 +42,15 @@
   color: black;
   cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+  .search-img {
+    display: none;
+  }
+  .search-header {
+    display: none;
+  }
+  .search-container {
+    margin-top: 0px;
+  }
+}

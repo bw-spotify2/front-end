@@ -3,6 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import TrackContext from "../context/TrackContext";
 import "./SongSearch.css";
 
+
 const SongSearch = () => {
 	const [state, setState] = useContext(TrackContext);
 	console.log("tracks data", state.saved_song);
@@ -30,33 +31,33 @@ const SongSearch = () => {
 	};
 
 	return (
-		<>
-			<div className="search-container">
-				<img
-					style={{ height: "80px", borderRadius: "50%" }}
-					src="https://developer.spotify.com/assets/branding-guidelines/icon1@2x.png"
-					alt="spotify logo"></img>
-				<h3>Song Finder</h3>
-				<form className="search-form" onSubmit={songSubmit}>
-					<label htmlFor="search">
-						<input
-							type="text"
-							name="search"
-							placeholder=" Enter Song Title....."
-							value={userInput}
-							onChange={handleChange}></input>
-					</label>
-					<button className="search-button" type="submit">
-						Search
-					</button>
-				</form>
+
+		<div className="search-container">
+			<img class="search-img"
+      style={{height:'100px', borderRadius: '50%'}}
+				src="https://developer.spotify.com/assets/branding-guidelines/icon1@2x.png"
+				alt="spotify logo"></img>
+			<h3 class="search-header">Song Finder</h3>
+			<form className='search-form'onSubmit={songSubmit}>
+				<label htmlFor="search">
+					<input
+						type="text"
+						name="search"
+						placeholder=" Enter Song Title....."
+						value={song.songName}
+						onChange={handleSongChange}></input>
+				</label>
+        <button className='search-button'type='submit'>Search</button>
+			</form>
+			< hr/>
+
+			<div className="search-results">
+				<p>Results will populate here</p>
 			</div>
-			{/* <div className="results-container">
-				{state.saved_song.map((item) => (
-					<li key={item.id} item={item.song_name}></li>
-				))}
-			</div> */}
-		</>
+		</div>
+
+		
+
 	);
 };
 
