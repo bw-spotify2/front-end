@@ -3,6 +3,7 @@ import SongSearch from './song-components/SongSearch';
 import styled from 'styled-components';
 import Album from './song-components/Album';
 import Song from './song-components/Song';
+import axios from 'axios';
 // import SongVisual from './song-components';
 
 const Title = styled.div`
@@ -30,11 +31,20 @@ const PageContainer = styled.div`
 `;
 
 const SearchContainer = styled.div`
-    width: 375px;
-    border: 1px solid white;
+    background-color: #404946;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    height: auto;
+    width: 450px;
+    justify-content: center;
 
     @media screen and (max-width: 800px) {
-        width: 100%;
+        margin: 0 auto;
+    }
+
+    @media screen and (max-width: 460px) {
+        max-width: 350px;
     }
 `;
 
@@ -54,6 +64,8 @@ const SongContainer = styled.div`
 `;
 
 
+
+
 function Songs() {
     return (
         <>
@@ -61,27 +73,18 @@ function Songs() {
             <div>
                 <H2>Artist | Song Title</H2>
             </div>
-            <div>
-            
-            </div>
-
         </Title> 
          
         <PageContainer>
-               
 
                <SearchContainer>
-                   <SongSearch />  
+                   <SongSearch />
                </SearchContainer>
            
                <SongContainer>
-                   <div>
                        <Album />
-                   </div>
-                   <div>
-                       <Song />
-                   </div>
-   
+                   
+                       <Song />   
                </SongContainer>
    
            </PageContainer>
