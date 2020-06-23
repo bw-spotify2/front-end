@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axiosWithAuth from '../utils/axiosWithAuth'
 import './SongSearch.css'
 
+
 const SongSearch = () => {
 	const [song, setSong] = useState({
 		songName: "",
@@ -23,11 +24,11 @@ const SongSearch = () => {
 
 	return (
 		<div className="search-container">
-			<img
+			<img class="search-img"
       style={{height:'100px', borderRadius: '50%'}}
 				src="https://developer.spotify.com/assets/branding-guidelines/icon1@2x.png"
 				alt="spotify logo"></img>
-			<h3>Song Finder</h3>
+			<h3 class="search-header">Song Finder</h3>
 			<form className='search-form'onSubmit={songSubmit}>
 				<label htmlFor="search">
 					<input
@@ -39,7 +40,14 @@ const SongSearch = () => {
 				</label>
         <button className='search-button'type='submit'>Search</button>
 			</form>
+			< hr/>
+
+			<div className="search-results">
+				<p>Results will populate here</p>
+			</div>
 		</div>
+
+		
 	);
 };
 

@@ -7,7 +7,8 @@ const SearchBar = styled.div`
 `;
 
 const SearchResults = styled.div`
-
+    border: 1px solid white;
+    color: white;
 `;
 function Search() {
 
@@ -20,7 +21,7 @@ function Search() {
 
             </SearchBar>
             <SearchResults>
-      
+                <p>Search Results here</p>
             </SearchResults>
         </form>
         
