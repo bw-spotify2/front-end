@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import styled from "styled-components";
 import axiosWithAuth from "./utils/axiosWithAuth";
 
@@ -29,7 +29,7 @@ const Submission = styled.div`
 	border-radius: 5px;
 	padding: 0.5rem;
 	&:hover {
-		background-color: white;
+		
 		color: black;
 		font-weight: 600;
 	}
@@ -97,6 +97,7 @@ const SignIn = () => {
 			<Submission>
 				<button type="submit">Sign In</button>
 			</Submission>
+			<h5>New? Register <Link>Here</Link></h5>
 		</FormContainer>
 	);
 };

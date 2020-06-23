@@ -1,10 +1,9 @@
-
-import React from 'react';
-import SongSearch from './song-components/SongSearch';
-import styled from 'styled-components';
-import Album from './song-components/Album';
-import Song from './song-components/Song';
-import axios from 'axios';
+import React from "react";
+import SongSearch from "./song-components/SongSearch";
+import styled from "styled-components";
+import Album from "./song-components/Album";
+import Song from "./song-components/Song";
+import axios from "axios";
 
 // import SongVisual from './song-components';
 
@@ -30,22 +29,21 @@ const PageContainer = styled.div`
 `;
 
 const SearchContainer = styled.div`
-    background-color: #404946;
-    border-radius: 5px;
-    margin: 5px;
-    padding: 5px;
-    height: auto;
-    width: 450px;
-    justify-content: center;
+	background-color: #404946;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 5px;
+	height: auto;
+	width: 450px;
+	justify-content: center;
 
-    @media screen and (max-width: 800px) {
-        margin: 0 auto;
-    }
+	@media screen and (max-width: 800px) {
+		margin: 0 auto;
+	}
 
-    @media screen and (max-width: 460px) {
-        max-width: 350px;
-    }
-
+	@media screen and (max-width: 460px) {
+		max-width: 350px;
+	}
 `;
 
 const SongContainer = styled.div`
@@ -63,41 +61,35 @@ const SongContainer = styled.div`
 	}
 `;
 
-
-
 function Songs() {
-    return (
-        <>
-        <Title>
-            <div>
-                <H2>Artist | Song Title</H2>
-            </div>
-        </Title> 
-         
-        <PageContainer>
+	return (
+		<>
+			<Title>
+				<div>
+					<H2>Artist | Song Title</H2>
+				</div>
+			</Title>
 
-               <SearchContainer>
-                   <SongSearch />
-               </SearchContainer>
-           
-               <SongContainer>
-                       <Album />
-                   
-                       <Song />   
-               </SongContainer>
-   
-           </PageContainer>
-
+			<PageContainer>
+				<SearchContainer>
+					<SongSearch />
+				</SearchContainer>
 
 				<SongContainer>
-					<div>
-						<Album />
-					</div>
-					<div>
-						<Song />
-					</div>
+					<Album />
+
+					<Song />
 				</SongContainer>
 			</PageContainer>
+
+			{/* <SongContainer>
+				<div>
+					<Album />
+				</div>
+				<div>
+					<Song />
+				</div>
+			</SongContainer> */}
 		</>
 	);
 }
