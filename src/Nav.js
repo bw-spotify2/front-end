@@ -15,7 +15,7 @@ const Nav = styled.div`
 	background-image: linear-gradient(#2a2c2a, #a1a0a0 5%, #2a2c2a);
 `;
 
-const NavLink = styled.a`
+const NavLink = styled.span`
     margin: .5rem;
 	padding: .5rem;
 	text-decoration: none;
