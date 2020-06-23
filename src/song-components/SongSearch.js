@@ -1,28 +1,37 @@
-import React, { useState } from "react";
-import axiosWithAuth from '../utils/axiosWithAuth'
-import './SongSearch.css'
+import React, { useState, useEffect, useContext } from "react";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import TrackContext from "../context/TrackContext";
+import "./SongSearch.css";
 
 
 const SongSearch = () => {
-	const [song, setSong] = useState({
-		songName: "",
-	});
+	const [state, setState] = useContext(TrackContext);
+	console.log("tracks data", state.saved_song);
+	const [userInput, setUserInput] = useState("");
+	const [songTitle, setSongTitle] = useState("");
 
-	const handleSongChange = (e) => {
-		setSong(e.target.value);
+	useEffect(() => {
+		axiosWithAuth()
+			.get("/savedsongs")
+			.then((res) => {
+				console.log(res);
+				let saved_song = res.data;
+				setState({ saved_song: saved_song });
+			})
+			.catch((err) => console.log(err.message, err.response));
+	}, [songTitle]);
+
+	const handleChange = (e) => {
+		setUserInput(e.target.value);
 	};
 
 	const songSubmit = (e) => {
 		e.preventDefault();
-		axiosWithAuth()
-			.post("")
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((err) => console.log(err.message, err.response));
+		setSongTitle(userInput);
 	};
 
 	return (
+
 		<div className="search-container">
 			<img class="search-img"
       style={{height:'100px', borderRadius: '50%'}}
@@ -35,8 +44,8 @@ const SongSearch = () => {
 						type="text"
 						name="search"
 						placeholder=" Enter Song Title....."
-						value={song.songName}
-						onChange={handleSongChange}></input>
+						value={userInput}
+						onChange={handleChange}></input>
 				</label>
         <button className='search-button'type='submit'>Search</button>
 			</form>
@@ -48,6 +57,7 @@ const SongSearch = () => {
 		</div>
 
 		
+
 	);
 };
 
