@@ -44,8 +44,8 @@ const SongSearch = () => {
 						type="text"
 						name="search"
 						placeholder=" Enter Song Title....."
-						value={song.songName}
-						onChange={handleSongChange}></input>
+						value={userInput}
+						onChange={handleChange}></input>
 				</label>
         <button className='search-button'type='submit'>Search</button>
 			</form>
