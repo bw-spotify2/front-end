@@ -1,13 +1,7 @@
 import React from 'react';
 import SongSearch from './song-components/SongSearch';
 import styled from 'styled-components';
-import Album from './song-components/Album';
-import Song from './song-components/Song';
-import axios from 'axios';
-// import SongVisual from './song-components';
-
-const Title = styled.div`
-`;
+import CarouselComponent from './song-components/CarouselComponent';
 
 const H2 = styled.h2`
     text-align: center;
@@ -21,6 +15,7 @@ const H2 = styled.h2`
 const PageContainer = styled.div`
     display: flex;
     justify-content: center;
+    margin-top: 10px;
     
 
     @media screen and (max-width: 800px) {
@@ -68,24 +63,14 @@ const SongContainer = styled.div`
 
 function Songs() {
     return (
-        <>
-        <Title>
-            <div>
-                <H2>Artist | Song Title</H2>
-            </div>
-        </Title> 
-         
+        <> 
         <PageContainer>
 
                <SearchContainer>
                    <SongSearch />
                </SearchContainer>
            
-               <SongContainer>
-                       <Album />
-                   
-                       <Song />   
-               </SongContainer>
+               <CarouselComponent />
    
            </PageContainer>
 
