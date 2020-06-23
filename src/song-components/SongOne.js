@@ -15,6 +15,12 @@ const CardWrapper = styled.div`
         
 `;
 
+const Title = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
 const ContentWrapper = styled.div`
     display:flex;
     flex-direction: column;
@@ -24,49 +30,55 @@ const ContentWrapper = styled.div`
 
 const H3 = styled.h3`
     text-align: center;
+    margin: 5px;
+    
 `;
 
 const ImgContainer = styled.div`
-    max-height: 350px;
-    max-width: 350px;
-`;
-
-const AlbumInfo = styled.div`
-    color:white;
+    max-height:100px;
+    max-width: 100px;
+    margin: 5px;
 `;
 
 const Listen = styled.div`
-    margin-top: 15px;
     padding: 5px;
+    margin: 5px;
 
     &:hover {
         background-color: white;
         border-radius: 10px;
+        padding: 5px;
     }
 `;
 
 
-function Album() {
+function SongOne(props) {
+    console.log('SongOne', props.songs[0])
+
+
     return (
         <CardWrapper>
-               <H3>Album | Album Title Here</H3> 
+            <Title>
+                <ImgContainer>
+                    <img alt='album-artwork' src={props.songs[0].album_art} />
+                </ImgContainer>
+                <div>
+                <H3>{props.songs[0].song_name}</H3>
+                <Listen>  
+                
+                <a target='blank' href={props.songs[0].song_url}><img src="https://i.imgur.com/UMlMHPP.png" alt="listen-on-spotify" /> </a>
+                </Listen>
+                </div>
+                
+            </Title>
+                
             < hr/>
             <ContentWrapper>
-
-                <ImgContainer>
-                    <img alt='album-artwork' src='https://i.scdn.co/image/ab67616d00001e021a46e59b547c2c356403a478' />
-                </ImgContainer>
-                <AlbumInfo>
-                    <Listen>
-                        <img src="https://i.imgur.com/UMlMHPP.png" alt="listen-on-spotify"></img>
-                        {/* image source not pulling in from public folder, no idea why. Will try to re-asociate later */}
-                    </Listen>
-                </AlbumInfo>
-
+    
             </ContentWrapper>
           
         </CardWrapper>
     );
 }
 
-export default Album;
+export default SongOne;
