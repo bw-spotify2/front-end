@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import axiosWithAuth from "./utils/axiosWithAuth";
-import axios from 'axios'
 
 const FormContainer = styled.form`
 	display: flex;
@@ -63,22 +62,21 @@ const SignIn = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		axios
-			.get("https://spotify-api-project.herokuapp.com/api/frontend/users")
+		axiosWithAuth()
+			.post("/login", user)
 			.then((res) => {
-				console.log(res);
-				//localStorage.setItem("token", res.data.payload);
+				console.log('postlogin',res);
+				localStorage.setItem("token", res.data.payload);
 				push("/songs");
 			})
 			.catch((err) => console.log(err.message, err.response));
-			setUser({
-				username: '',
-				password:''
-			})
+		setUser({
+			username: "",
+			password: "",
+		});
 	};
 
 	return (
-		
 		<FormContainer id="sign-up" onSubmit={handleSubmit}>
 			<FormTitle>
 				<H3>Please Sign In</H3>
@@ -96,9 +94,10 @@ const SignIn = () => {
 				name="password"
 				value={user.password}
 				onChange={handleChanges}></Inputs>
-			<Submission><button type='submit'>Sign In</button></Submission>
+			<Submission>
+				<button type="submit">Sign In</button>
+			</Submission>
 		</FormContainer>
-		
 	);
 };
 
