@@ -13,7 +13,7 @@ const SongSearch = () => {
 		axiosWithAuth()
 			.get("/savedsongs")
 			.then((res) => {
-				console.log(res);
+				console.log('search', res.data[1]);
 				let saved_song = res.data;
 				setState({ saved_song: saved_song });
 			})
@@ -66,7 +66,7 @@ const SongSearch = () => {
 				<div className="search-results">
 					<p>Results will populate here</p>
 				</div>
-			</div>
+		
 		</>
 	);
 };
