@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Carousel from '@brainhubeu/react-carousel';
+import '@brainhubeu/react-carousel/lib/style.css';
 
-const CarouselContainer = styled.div`
-`;
 
 const CardWrapper = styled.div`
     background-color: #404946;
@@ -58,7 +58,7 @@ const Listen = styled.div`
 
 
 
-function Carousel() {
+function CarouselComponent() {
 
     var [suggestedSongs, setSongs] = useState([{}])
 
@@ -75,39 +75,36 @@ function Carousel() {
     console.log('suggested songs', suggestedSongs)
 
     return(
-    
-        <CarouselContainer>
-            <ul>
+            
+               <Carousel arrows dots>
                 {suggestedSongs.map((song) => {
                     return <li>
-        <CardWrapper>
-            <Title>
-                <ImgContainer>
-                    <img alt='album-artwork' src={song.album_art} />
-                </ImgContainer>
-                <div>
-                    <H3>{song.song_name} {song.id}</H3>
-                    <Listen>  
-                        <a target='blank' href={song.song_url}><img src="https://i.imgur.com/UMlMHPP.png" alt="listen-on-spotify" /> </a>
-                    </Listen>
-                </div>
-            </Title>
-                
-            < hr/>
-            <ContentWrapper>
-    
-            </ContentWrapper>
-          
-        </CardWrapper>
+
+
+                        <CardWrapper>
+                            <Title>
+                                <ImgContainer>
+                                    <img alt='album-artwork' src={song.album_art} />
+                                </ImgContainer>
+                                <div>
+                                    <H3>{song.song_name} {song.id}</H3>
+                                    <Listen>  
+                                        <a target='blank' href={song.song_url}><img src="https://i.imgur.com/UMlMHPP.png" alt="listen-on-spotify" /> </a>
+                                    </Listen>
+                                </div>
+                            </Title>
+                                
+                            < hr/>
+                            <ContentWrapper>
                     
-                    
+                            </ContentWrapper>
+                        </CardWrapper>
+                        
                     </li>
                 })}
-            </ul>
-
-        </CarouselContainer>
-        
+                </Carousel> 
+            
     );
 }
 
-export default Carousel;
+export default CarouselComponent;
