@@ -5,20 +5,20 @@ import "./SongSearch.css";
 
 const SongSearch = () => {
 	const [state, setState] = useContext(TrackContext);
-	console.log("tracks data", state.saved_song);
+	console.log("tracks data", state.saved_songs);
 	const [userInput, setUserInput] = useState("");
-	const [songTitle, setSongTitle] = useState("");
+	const [keyWords, setKeyWords] = useState("");
 
 	useEffect(() => {
 		axiosWithAuth()
-			.get("/savedsongs")
+			.post("/findsongsquery", keyWords)
 			.then((res) => {
-				console.log("search", res.data[1]);
-				let saved_song = res.data;
-				setState({ saved_song: saved_song });
+				console.log("search", res.data);
+				let searched = res.data;
+				setState({ saved_songs: searched });
 			})
 			.catch((err) => console.log(err.message, err.response));
-	}, [songTitle]);
+	}, [keyWords]);
 
 	const handleChange = (e) => {
 		setUserInput(e.target.value);
@@ -26,7 +26,7 @@ const SongSearch = () => {
 
 	const songSubmit = (e) => {
 		e.preventDefault();
-		setSongTitle(userInput);
+		setKeyWords(userInput);
 	};
 
 	return (
