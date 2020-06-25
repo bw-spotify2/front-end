@@ -28,9 +28,15 @@ const SongSearch = () => {
 		console.log('search text', search)
 	};
 
+	function openFaves() {
+		console.log('hello from openFaves')
+		document.getElementById('Faves').style.display = 'block';
+		document.getElementById('SongUI').style.display = 'none';
+	};
+
 	return (
 		<div className="search-container">
-			<button classname="saved-list-btn" type="submit">
+			<button classname="saved-list-btn" type="submit" onClick={openFaves}>
 				View Saved List
 			</button>
 			<br />
