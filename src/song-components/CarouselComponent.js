@@ -85,7 +85,6 @@ function CarouselComponent() {
 
 
     return(
-            <>
                <Carousel arrows dots>
                 {suggestedSongs.map((song) => {
                     const Graphs = () => {
@@ -149,9 +148,6 @@ function CarouselComponent() {
                     </li>
                 })}
                 </Carousel> 
-
-                
-                </>
     );
 }
 
