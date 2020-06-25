@@ -3,7 +3,6 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
-// import Graphs from './graphTest';
 import { Line } from 'react-chartjs-2';
 
 
@@ -29,10 +28,7 @@ const Title = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  margin: 1%;
 `;
 
 const H3 = styled.h3`
@@ -56,6 +52,18 @@ const Listen = styled.div`
         border-radius: 10px;
         padding: 5px;
     }
+`;
+
+const SongInfoContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+const SongInfo = styled.div`
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 0px 5px;
 `;
 
 
@@ -91,10 +99,13 @@ function CarouselComponent() {
                                         label: 'Song Characteristics',
                                         data: [(song.energy * 100), (song.danceability * 100), (song.acousticness * 100), (song.liveness * 100), (song.speechiness * 100)],
                                         backgroundColor: 'rgba(0, 0, 0, .5)',
-                                        borderWidth: 5
+                                        borderWidth: 5,
+                                        
                                     }
                                 ]
+                                
                             })
+                       
                         }
                     
                         useEffect(() => {
@@ -103,7 +114,6 @@ function CarouselComponent() {
                     
                         return(
                             <div>
-                                <></>
                                 <Line data={chartData} />
                             </div>
                         )
@@ -119,7 +129,7 @@ function CarouselComponent() {
                                     <img alt='album-artwork' src={song.album_art} />
                                 </ImgContainer>
                                 <div>
-                                    <H3>{song.song_name} {song.id}</H3>
+                                    <H3>{song.song_name}</H3>
                                     <Listen>  
                                         <a target='blank' href={song.song_url}><img src="https://i.imgur.com/UMlMHPP.png" alt="listen-on-spotify" /> </a>
                                     </Listen>
@@ -128,17 +138,11 @@ function CarouselComponent() {
                                 
                             < hr/>
                             <ContentWrapper>
-                                {/* <ul>
-                                    <li>ID: {song.id}</li>
-                                    <li>Danceability: {song.danceability}</li>
-                                    <li>Acousticness: {song.acousticness}</li>
-                                    <li>Energy: {song.energy}</li>
-                                    <li>Instrumentalness: {song.instrumentalness}</li>
-                                    <li>Loudness: {song.loudness}</li>
-                                    <li>Tempo: {song.tempo}</li>
-                                </ul>                        */}
-
-                                <Graphs  song={suggestedSongs}/>
+                                <Graphs />
+                                <SongInfoContainer>
+                                    <SongInfo><p>Tempo: {song.tempo}</p></SongInfo>
+                                    <SongInfo><p>Duration: {(song.duration_ms / 1000)} Sec</p></SongInfo>
+                                </SongInfoContainer>
                             </ContentWrapper>
                         </CardWrapper>
                         
