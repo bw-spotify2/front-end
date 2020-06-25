@@ -40,7 +40,7 @@ const SongSearch = () => {
 			</h4>
 			<img
 				class="search-img"
-				style={{ height: "100px", borderRadius: "50%" }}
+				style={{ height: "100px", borderRadius: "50%", boxShadow: '2px 4px black' }}
 				src="https://developer.spotify.com/assets/branding-guidelines/icon1@2x.png"
 				alt="spotify logo"></img>
 			<h3 class="search-header">
