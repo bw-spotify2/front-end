@@ -6,7 +6,7 @@ import "./SongSearch.css";
 const SongSearch = () => {
 	const [state, setState] = useContext(TrackContext);
 	console.log("search state", state);
-	
+
 	const [search, setSearch] = useState({
 		keyWords: "",
 	});
@@ -25,7 +25,7 @@ const SongSearch = () => {
 
 	const handleChange = (e) => {
 		setSearch({ ...search, [e.target.name]: e.target.value });
-		console.log('search text', search)
+		console.log("search text", search);
 	};
 
 	return (
@@ -40,7 +40,11 @@ const SongSearch = () => {
 			</h4>
 			<img
 				class="search-img"
-				style={{ height: "100px", borderRadius: "50%", boxShadow: '2px 4px black' }}
+				style={{
+					height: "100px",
+					borderRadius: "50%",
+					boxShadow: "2px 4px black",
+				}}
 				src="https://developer.spotify.com/assets/branding-guidelines/icon1@2x.png"
 				alt="spotify logo"></img>
 			<h3 class="search-header">
@@ -62,10 +66,11 @@ const SongSearch = () => {
 			<hr />
 
 			<div className="search-results">
-				{state.saved_songs.map(song => (
-					<p key={song.id}>{song.name}</p>
+				{state.saved_songs.map((song) => (
+					<p key={song.id}>{song.name}
+					<i className="fas fa-plus-circle"></i>
+					</p>
 				))}
-				
 			</div>
 		</div>
 	);
