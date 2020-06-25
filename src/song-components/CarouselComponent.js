@@ -3,6 +3,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
+// import Graphs from './graphTest';
+import { Line } from 'react-chartjs-2';
+
 
 
 const CardWrapper = styled.div`
@@ -72,12 +75,41 @@ function CarouselComponent() {
             .catch((err) => console.log('error connecting to saved songs'))
     }, []);
 
-    console.log('suggested songs', suggestedSongs)
 
     return(
-            
+            <>
                <Carousel arrows dots>
                 {suggestedSongs.map((song) => {
+                    const Graphs = () => {
+                        const [chartData, setChartData] = useState({})
+                    
+                        const chart = () => {
+                            setChartData({
+                                labels: ['Energy', 'Danceability', 'Acousticness', 'Liveness', 'Speechiness'],
+                                datasets: [
+                                    {
+                                        label: 'Song Characteristics',
+                                        data: [(song.energy * 100), (song.danceability * 100), (song.acousticness * 100), (song.liveness * 100), (song.speechiness * 100)],
+                                        backgroundColor: 'rgba(0, 0, 0, .5)',
+                                        borderWidth: 5
+                                    }
+                                ]
+                            })
+                        }
+                    
+                        useEffect(() => {
+                            chart()
+                        }, [])
+                    
+                        return(
+                            <div>
+                                <></>
+                                <Line data={chartData} />
+                            </div>
+                        )
+                    
+                    }
+
                     return <li>
 
 
@@ -96,14 +128,26 @@ function CarouselComponent() {
                                 
                             < hr/>
                             <ContentWrapper>
-                    
+                                {/* <ul>
+                                    <li>ID: {song.id}</li>
+                                    <li>Danceability: {song.danceability}</li>
+                                    <li>Acousticness: {song.acousticness}</li>
+                                    <li>Energy: {song.energy}</li>
+                                    <li>Instrumentalness: {song.instrumentalness}</li>
+                                    <li>Loudness: {song.loudness}</li>
+                                    <li>Tempo: {song.tempo}</li>
+                                </ul>                        */}
+
+                                <Graphs  song={suggestedSongs}/>
                             </ContentWrapper>
                         </CardWrapper>
                         
                     </li>
                 })}
                 </Carousel> 
-            
+
+                
+                </>
     );
 }
 
