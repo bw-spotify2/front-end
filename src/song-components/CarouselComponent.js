@@ -7,51 +7,51 @@ import { Line } from 'react-chartjs-2';
 
 
 
-const CardWrapper = styled.div`
-    background-color: #404946;
-    border-radius: 5px;
-    margin: 5px;
-    padding: 5px;
-    height: 450px;
-    width: 450px;
 
-    @media screen and (max-width: 460px) {
-        width: 350px;
-    }
-        
+const CardWrapper = styled.div`
+	background-color: #404946;
+	border-radius: 5px;
+	margin: 5px;
+	padding: 5px;
+	height: 450px;
+	width: 450px;
+
+	@media screen and (max-width: 460px) {
+		width: 350px;
+	}
 `;
 
 const Title = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 const ContentWrapper = styled.div`
   margin: 1%;
+
 `;
 
 const H3 = styled.h3`
-    text-align: center;
-    margin: 5px;
-    
+	text-align: center;
+	margin: 5px;
 `;
 
 const ImgContainer = styled.div`
-    max-height:100px;
-    max-width: 100px;
-    margin: 5px;
+	max-height: 100px;
+	max-width: 100px;
+	margin: 5px;
 `;
 
 const Listen = styled.div`
-    padding: 5px;
-    margin: 5px;
+	padding: 5px;
+	margin: 5px;
 
-    &:hover {
-        background-color: white;
-        border-radius: 10px;
-        padding: 5px;
-    }
+	&:hover {
+		background-color: white;
+		border-radius: 10px;
+		padding: 5px;
+	}
 `;
 
 const SongInfoContainer = styled.div`
@@ -149,6 +149,7 @@ function CarouselComponent() {
                 })}
                 </Carousel> 
     );
+
 }
 
 export default CarouselComponent;

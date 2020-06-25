@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import SongSearch from './song-components/SongSearch';
 import styled from 'styled-components';
@@ -29,6 +30,7 @@ const PageContainer = styled.div`
 `;
 
 const SearchContainer = styled.div`
+
     background-color: #404946;
     border-radius: 5px;
     margin: 5px;
@@ -45,8 +47,10 @@ const SearchContainer = styled.div`
         max-width: 350px;
     }
 
+	@media screen and (max-width: 460px) {
+		max-width: 350px;
+	}
 `;
-
 
 
 function Songs() {
@@ -61,6 +65,7 @@ function Songs() {
                <CarouselComponent />
 			   
 		</PageContainer>
+
 		</>
 	);
 }

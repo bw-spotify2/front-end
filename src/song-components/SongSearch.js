@@ -3,61 +3,71 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import TrackContext from "../context/TrackContext";
 import "./SongSearch.css";
 
-
 const SongSearch = () => {
 	const [state, setState] = useContext(TrackContext);
-	console.log("tracks data", state.saved_song);
-	const [userInput, setUserInput] = useState("");
-	const [songTitle, setSongTitle] = useState("");
-
-	useEffect(() => {
-		axiosWithAuth()
-			.get("/savedsongs")
-			.then((res) => {
-				console.log('search', res.data[1]);
-				let saved_song = res.data;
-				setState({ saved_song: saved_song });
-			})
-			.catch((err) => console.log(err.message, err.response));
-	}, [songTitle]);
-
-	const handleChange = (e) => {
-		setUserInput(e.target.value);
-	};
+	console.log("search state", state);
+	
+	const [search, setSearch] = useState({
+		keyWords: "",
+	});
 
 	const songSubmit = (e) => {
 		e.preventDefault();
-		setSongTitle(userInput);
+		axiosWithAuth()
+			.post("/findsongsquery", search)
+			.then((res) => {
+				console.log("search results", res.data);
+				let searched = res.data;
+				setState({ saved_songs: searched });
+			})
+			.catch((err) => console.log(err.message, err.response));
+	};
+
+	const handleChange = (e) => {
+		setSearch({ ...search, [e.target.name]: e.target.value });
+		console.log('search text', search)
 	};
 
 	return (
-
 		<div className="search-container">
-			<img class="search-img"
-      style={{height:'100px', borderRadius: '50%'}}
+			<button classname="saved-list-btn" type="submit">
+				View Saved List
+			</button>
+			<br />
+			<h4>
+				<i className="fas fa-music"></i>
+				<span> ..</span> or{" "}
+			</h4>
+			<img
+				class="search-img"
+				style={{ height: "100px", borderRadius: "50%" }}
 				src="https://developer.spotify.com/assets/branding-guidelines/icon1@2x.png"
 				alt="spotify logo"></img>
-			<h3 class="search-header">Song Finder</h3>
-			<form className='search-form'onSubmit={songSubmit}>
-				<label htmlFor="search">
+			<h3 class="search-header">
+				Song <span>Finder</span>
+			</h3>
+			<form className="search-form" onSubmit={songSubmit}>
+				<label htmlFor="keyWords">
 					<input
 						type="text"
-						name="search"
+						name="keyWords"
 						placeholder=" Enter Song Title....."
-						value={userInput}
+						value={search.keyWords}
 						onChange={handleChange}></input>
 				</label>
-        <button className='search-button'type='submit'>Search</button>
+				<button className="search-button" type="submit">
+					Search
+				</button>
 			</form>
-			< hr/>
+			<hr />
 
 			<div className="search-results">
-				<p>Results will populate here</p>
+				{state.saved_songs.map(song => (
+					<p key={song.id}>{song.name}</p>
+				))}
+				
 			</div>
 		</div>
-
-		
-
 	);
 };
 
