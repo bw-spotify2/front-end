@@ -4,19 +4,31 @@ import styled from 'styled-components';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import { Line } from 'react-chartjs-2';
+import FavoritesList from './FavoritesList';
 
 
+const Add = styled.div`
+padding: 5px;
+margin: 5px;
 
+&:hover {
+    background-color: white;
+    color: black;
+    font-weight: 900;
+    border-radius: 10px;
+    
+}
+`;
 
 const CardWrapper = styled.div`
 	background-color: #404946;
 	border-radius: 5px;
 	margin: 5px;
 	padding: 5px;
-	height: 450px;
-	width: 450px;
+	height: 500px;
+    width: 500px;
 
-	@media screen and (max-width: 460px) {
+	@media screen and (max-width: 525px) {
 		width: 350px;
 	}
 `;
@@ -71,7 +83,12 @@ const SongInfo = styled.div`
 
 function CarouselComponent() {
 
-    var [suggestedSongs, setSongs] = useState([{}])
+    const [suggestedSongs, setSongs] = useState([{}])
+    const [favoriteSongs, setFavoriteSongs] = useState([{}])
+
+    function storeFaves(){
+        console.log('hello')
+    }
 
     useEffect(() => {
         axios
@@ -85,7 +102,8 @@ function CarouselComponent() {
 
 
     return(
-               <Carousel arrows dots>
+        <>
+               <Carousel centered dots>
                 {suggestedSongs.map((song) => {
                     const Graphs = () => {
                         const [chartData, setChartData] = useState({})
@@ -98,7 +116,7 @@ function CarouselComponent() {
                                         label: 'Song Characteristics',
                                         data: [(song.energy * 100), (song.danceability * 100), (song.acousticness * 100), (song.liveness * 100), (song.speechiness * 100)],
                                         backgroundColor: 'rgba(0, 0, 0, .5)',
-                                        borderWidth: 5,
+                                        borderWidth: 3,
                                         
                                     }
                                 ]
@@ -112,9 +130,9 @@ function CarouselComponent() {
                         }, [])
                     
                         return(
-                            <div>
+                            
                                 <Line data={chartData} />
-                            </div>
+                            
                         )
                     
                     }
@@ -133,6 +151,9 @@ function CarouselComponent() {
                                         <a target='blank' href={song.song_url}><img src="https://i.imgur.com/UMlMHPP.png" alt="listen-on-spotify" /> </a>
                                     </Listen>
                                 </div>
+                                <Add >
+                                <p>+ Favorites</p>
+                                </Add>
                             </Title>
                                 
                             < hr/>
@@ -147,7 +168,10 @@ function CarouselComponent() {
                         
                     </li>
                 })}
-                </Carousel> 
+                </Carousel>
+
+                {/* <FavoritesList props={suggestedSongs} /> */}
+                </>
     );
 
 }

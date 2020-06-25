@@ -4,6 +4,7 @@ import React from 'react';
 import SongSearch from './song-components/SongSearch';
 import styled from 'styled-components';
 import CarouselComponent from './song-components/CarouselComponent';
+import FavoritesList from './song-components/FavoritesList';
 
 const H2 = styled.h2`
 	text-align: center;
@@ -43,30 +44,28 @@ const SearchContainer = styled.div`
         margin: 0 auto;
     }
 
-    @media screen and (max-width: 460px) {
+    @media screen and (max-width: 525px) {
         max-width: 350px;
     }
-
-	@media screen and (max-width: 460px) {
-		max-width: 350px;
-	}
 `;
 
 
 function Songs() {
     return (
-        <> 
-        <PageContainer>
+<>
+        <PageContainer id='SongUI'>
 
-               <SearchContainer>
-                   <SongSearch />
-               </SearchContainer>
-           
-               <CarouselComponent />
-			   
-		</PageContainer>
+            <SearchContainer>
+                <SongSearch />
+            </SearchContainer>
 
-		</>
+            <CarouselComponent />
+        
+        </PageContainer>
+
+        <FavoritesList />
+        
+</>
 	);
 }
 
