@@ -5,28 +5,27 @@ import "./SongSearch.css";
 
 const SongSearch = () => {
 	const [state, setState] = useContext(TrackContext);
-	console.log("tracks data", state.saved_song);
-	const [userInput, setUserInput] = useState("");
-	const [songTitle, setSongTitle] = useState("");
-
-	useEffect(() => {
-		axiosWithAuth()
-			.get("/savedsongs")
-			.then((res) => {
-				console.log("search", res.data[1]);
-				let saved_song = res.data;
-				setState({ saved_song: saved_song });
-			})
-			.catch((err) => console.log(err.message, err.response));
-	}, [songTitle]);
-
-	const handleChange = (e) => {
-		setUserInput(e.target.value);
-	};
+	console.log("search state", state);
+	
+	const [search, setSearch] = useState({
+		keyWords: "",
+	});
 
 	const songSubmit = (e) => {
 		e.preventDefault();
-		setSongTitle(userInput);
+		axiosWithAuth()
+			.post("/findsongsquery", search)
+			.then((res) => {
+				console.log("search results", res.data);
+				let searched = res.data;
+				setState({ saved_songs: searched });
+			})
+			.catch((err) => console.log(err.message, err.response));
+	};
+
+	const handleChange = (e) => {
+		setSearch({ ...search, [e.target.name]: e.target.value });
+		console.log('search text', search)
 	};
 
 	return (
@@ -48,12 +47,12 @@ const SongSearch = () => {
 				Song <span>Finder</span>
 			</h3>
 			<form className="search-form" onSubmit={songSubmit}>
-				<label htmlFor="search">
+				<label htmlFor="keyWords">
 					<input
 						type="text"
-						name="search"
+						name="keyWords"
 						placeholder=" Enter Song Title....."
-						value={userInput}
+						value={search.keyWords}
 						onChange={handleChange}></input>
 				</label>
 				<button className="search-button" type="submit">
@@ -63,7 +62,10 @@ const SongSearch = () => {
 			<hr />
 
 			<div className="search-results">
-				<p>Results will populate here</p>
+				{state.saved_songs.map(song => (
+					<p key={song.id}>{song.name}</p>
+				))}
+				
 			</div>
 		</div>
 	);
