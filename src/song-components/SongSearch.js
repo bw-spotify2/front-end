@@ -30,10 +30,10 @@ const SongSearch = () => {
 	};
 
 	function openFaves() {
-		console.log('hello from openFaves')
-		document.getElementById('Faves').style.display = 'block';
-		document.getElementById('SongUI').style.display = 'none';
-	};
+		console.log("hello from openFaves");
+		document.getElementById("Faves").style.display = "block";
+		document.getElementById("SongUI").style.display = "none";
+	}
 
 	return (
 		<div className="search-container">
@@ -72,15 +72,20 @@ const SongSearch = () => {
 			</form>
 			<hr />
 
-			
-				{state.saved_songs.map(song => (
-					<div className='search-results' key={song.id}>
-						<div className='search-imgs'><img src={song.album.images[1].url} alt='album-artwork' /></div>
-						<div className='search-name'>{song.album.artists[0].name}<br/><br/>{song.name}<hr/></div>
+			{state.saved_songs.map((song) => (
+				<div className="search-results" key={song.id}>
+					<div className="search-imgs">
+						<img src={song.album.images[1].url} alt="album-artwork" />
 					</div>
-
-				))}
-			</div>
+					<div className="search-name">
+						{song.album.artists[0].name}
+						<br />
+						<br />
+						{song.name}
+						<hr />
+					</div>
+				</div>
+			))}
 		</div>
 	);
 };
