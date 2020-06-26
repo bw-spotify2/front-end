@@ -69,7 +69,10 @@ const SongSearch = () => {
 
 			<div className="search-results">
 				{state.saved_songs.map(song => (
-					<p key={song.id}>{song.name}</p>
+					<div className='search-results' key={song.id}>
+						<div className='search-imgs'><img src={song.album.images[1].url} alt='album-artwork' /></div>
+						<div className='search-name'>{song.name}</div>
+					</div>
 				))}
 				
 			</div>
