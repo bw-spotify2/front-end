@@ -21,6 +21,7 @@ const SongSearch = () => {
 				setState({ saved_songs: searched });
 			})
 			.catch((err) => console.log(err.message, err.response));
+		setSearch({ keyWords: "" });
 	};
 
 	const handleChange = (e) => {
@@ -67,8 +68,9 @@ const SongSearch = () => {
 
 			<div className="search-results">
 				{state.saved_songs.map((song) => (
-					<p key={song.id}>{song.name}
-					<i className="fas fa-plus-circle"></i>
+					<p key={song.id}>
+						{song.name}
+						<i className="fas fa-plus-circle"></i>
 					</p>
 				))}
 			</div>
