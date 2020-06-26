@@ -2,6 +2,15 @@
   display: none;
 }
 
+.faves-button:hover {
+	background: #1db954;
+	color: black;
+	cursor: pointer;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 0px 75px;
+}
+
 .search-container {
 	text-align: center;
 	font-family: Rubik, sans-serif;

@@ -35,6 +35,10 @@ const SongSearch = () => {
 		document.getElementById("SongUI").style.display = "none";
 	}
 
+	function addToFavorites() {
+		console.log('hello')
+	}
+
 	return (
 		<div className="search-container">
 			<button classname="saved-list-btn" type="submit" onClick={openFaves}>
@@ -74,6 +78,7 @@ const SongSearch = () => {
 
 			{state.saved_songs.map((song) => (
 				<div className="search-results" key={song.id}>
+					<div className='faves-button' onClick={addToFavorites}>+ faves</div>
 					<div className="search-imgs">
 						<img src={song.album.images[1].url} alt="album-artwork" />
 					</div>
