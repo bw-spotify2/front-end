@@ -3,6 +3,9 @@ import { useHistory, Link } from "react-router-dom";
 import UserContext from "./context/UserContext";
 import styled from "styled-components";
 import axiosWithAuth from "./utils/axiosWithAuth";
+import * as yup from 'yup';
+import SignUp from './SignUp';
+
 
 const FormContainer = styled.form`
 	display: flex;
@@ -16,7 +19,7 @@ const FormContainer = styled.form`
 	position: absolute;
 	top: 30%;
 	left: 50%;
-	margin-left: -125px;
+	margin-left: -165px;
 `;
 
 const Inputs = styled.input`
@@ -47,6 +50,43 @@ const FormTitle = styled.div`
 `;
 
 const SignIn = () => {
+
+	//form validation & register/signin swap
+
+	const [errors, setErrors] = useState({
+		username: '',
+		password: ''
+	})
+
+	const validateChange = e => {
+	console.log('checking changes')
+	yup.reach(formSchema, e.target.name).validate(e.target.value).then(inputIsValid => {
+		setErrors({
+			...errors,
+			[e.target.name]: ''
+		})
+
+	}).catch(err => {
+		setErrors({
+			...errors,
+			[e.target.name]: err.errors[0]
+		})
+	})
+	}
+
+	function showSignUp() {
+		console.log('hello')
+		document.getElementById('sign-in').style.display = 'none';
+		document.getElementById('sign-up').style.display = 'flex';
+	}
+
+	const formSchema = yup.object().shape({
+		username: yup.string().required('Username is required'),
+		password: yup.string().required().min(7, 'password must be at least 7 characters')
+	})
+
+// end validation //
+
 	const [currentUser, setCurrentUser] = useContext(UserContext);
 	
 	const { push } = useHistory();
@@ -56,10 +96,12 @@ const SignIn = () => {
 	});
 
 	const handleChanges = (e) => {
+		e.persist();
 		setUser({
 			...user,
 			[e.target.name]: e.target.value,
 		});
+		validateChange(e)
 	};
 
 	const handleSubmit = (e) => {
@@ -80,7 +122,9 @@ const SignIn = () => {
 	};
 
 	return (
-		<FormContainer id="sign-up" onSubmit={handleSubmit}>
+		<>
+		<div id='sign-in'>
+		<FormContainer onSubmit={handleSubmit}>
 			<FormTitle>
 				<H3>Please Sign In</H3>
 			</FormTitle>
@@ -91,19 +135,23 @@ const SignIn = () => {
 				name="username"
 				value={user.username}
 				onChange={handleChanges}></Inputs>
+				{errors.username.length > 0 ? <p className='error'>{errors.username}</p> : null}
 			<Inputs
 				placeholder="Password"
 				type="password"
 				name="password"
 				value={user.password}
 				onChange={handleChanges}></Inputs>
+				{errors.password.length > 0 ? <p className='error'>{errors.password}</p> : null}
 			<Submission>
 				<button type="submit">Sign In</button>
 			</Submission>
-			<h5>
-				New? Register <Link>Here</Link>
-			</h5>
+			<h5><a href='/#' onClick={showSignUp}>New? Register Here</a></h5>
 		</FormContainer>
+		</div>
+
+		<SignUp />
+		</>
 	);
 };
 
