@@ -1,7 +1,9 @@
 #Faves {
   display: none;
 }
-
+.faves-container {
+	display: flex;
+}
 .faves-button:hover {
 	background: #1db954;
 	color: black;

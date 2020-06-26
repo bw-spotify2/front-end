@@ -1,15 +1,22 @@
 import React, { useState, useContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import TrackContext from "../context/TrackContext";
+import UserContext from "../context/UserContext";
+
+
 import "./SongSearch.css";
+import FavoritesList from "./FavoritesList";
 
 const SongSearch = () => {
 	const [state, setState] = useContext(TrackContext);
-	console.log("search state", state);
+	const [currentUser] = useContext(UserContext);
+	console.log("song search state", state, currentUser);
+	const user = currentUser;
 
 	const [search, setSearch] = useState({
 		keyWords: "",
 	});
+	
 
 	const songSubmit = (e) => {
 		e.preventDefault();
@@ -36,7 +43,8 @@ const SongSearch = () => {
 	}
 
 	function addToFavorites() {
-		console.log('hello')
+
+		openFaves()
 	}
 
 	return (
@@ -78,7 +86,9 @@ const SongSearch = () => {
 
 			{state.saved_songs.map((song) => (
 				<div className="search-results" key={song.id}>
-					<div className='faves-button' onClick={addToFavorites}>+ faves</div>
+					<div className="faves-button" onClick={addToFavorites}>
+						+ faves
+					</div>
 					<div className="search-imgs">
 						<img src={song.album.images[1].url} alt="album-artwork" />
 					</div>
