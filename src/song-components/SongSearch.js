@@ -6,7 +6,7 @@ import "./SongSearch.css";
 const SongSearch = () => {
 	const [state, setState] = useContext(TrackContext);
 	console.log("search state", state);
-	
+
 	const [search, setSearch] = useState({
 		keyWords: "",
 	});
@@ -21,11 +21,12 @@ const SongSearch = () => {
 				setState({ saved_songs: searched });
 			})
 			.catch((err) => console.log(err.message, err.response));
+		setSearch({ keyWords: "" });
 	};
 
 	const handleChange = (e) => {
 		setSearch({ ...search, [e.target.name]: e.target.value });
-		console.log('search text', search)
+		console.log("search text", search);
 	};
 
 	function openFaves() {
@@ -46,7 +47,11 @@ const SongSearch = () => {
 			</h4>
 			<img
 				class="search-img"
-				style={{ height: "100px", borderRadius: "50%" }}
+				style={{
+					height: "100px",
+					borderRadius: "50%",
+					boxShadow: "2px 4px black",
+				}}
 				src="https://developer.spotify.com/assets/branding-guidelines/icon1@2x.png"
 				alt="spotify logo"></img>
 			<h3 class="search-header">
@@ -67,14 +72,14 @@ const SongSearch = () => {
 			</form>
 			<hr />
 
-			<div className="search-results">
+			
 				{state.saved_songs.map(song => (
 					<div className='search-results' key={song.id}>
 						<div className='search-imgs'><img src={song.album.images[1].url} alt='album-artwork' /></div>
 						<div className='search-name'>{song.album.artists[0].name}<br/><br/>{song.name}<hr/></div>
 					</div>
+
 				))}
-				
 			</div>
 		</div>
 	);
