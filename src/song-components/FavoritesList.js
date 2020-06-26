@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../context/UserContext";
+import TrackContext from "../context/TrackContext";
 import styled from "styled-components";
 import "./SongSearch.css";
 import axiosWithAuth from "../utils/axiosWithAuth";
@@ -47,26 +48,52 @@ function closeFaves() {
 }
 
 function FavoritesList() {
+	const [state, setState] = useContext(TrackContext);
 	const [currentUser, setCurrentUser] = useContext(UserContext);
-	const user = currentUser;
+	const [fave, setFave] = useState([]);
 
-	console.log("fav list state", user);
+	console.log("fav list state", currentUser);
 
 	useEffect(() => {
 		axiosWithAuth()
-			.get(`/savedsongs/${user}`)
+			.get("/savedsongs")
 			.then((res) => {
-				console.log("users data", res);
-				const favTracks = res.data;
+				console.log("fav data", res.data);
+				setFave(res.data);
 			})
 			.catch((err) => console.log(err.message, err.response));
-	}, [user]);
+	}, []);
+
+	const deleteFav = (id) => {
+		axiosWithAuth()
+			.delete("/savedsongs", id)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => console.log(err.message));
+	};
+
 	return (
 		<div id="Faves">
 			<CardWrapper>
+				{/* <h1>{currentUser} 's Faves</h1> */}
 				<Close onClick={closeFaves}>Close</Close>
-
-				<p>list will go here</p>
+				{fave.map((song) => (
+					<div className="faves-container" key={song.id}>
+						<div className="faves-info">
+							<h4>
+								{song.song_name}
+								<br />
+								from: {song.album_name}
+								<br />
+								<i
+									className="fas fa-trash-alt"
+									style={{ color: "red", cursor: "pointer" }}
+									onClick={deleteFav}></i>
+							</h4>
+						</div>
+					</div>
+				))}
 			</CardWrapper>
 		</div>
 	);
