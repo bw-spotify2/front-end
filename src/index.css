@@ -57,11 +57,24 @@ ul, li {
   list-style-type: none;
 }
 
+#sign-up {
+	display: none;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+
 @media screen and (max-width: 400px) {
 	#app-callout {
 		display: none;
 	}
 	#sign-up {
+		top: 15%;
+	}
+	#sign-in {
 		top: 15%;
 	}
 }
