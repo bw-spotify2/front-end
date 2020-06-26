@@ -5,7 +5,7 @@ import "./SongSearch.css";
 
 const SongSearch = () => {
 	const [state, setState] = useContext(TrackContext);
-	console.log("search state", state);
+	// console.log("search state", state);
 	
 	const [search, setSearch] = useState({
 		keyWords: "",
@@ -16,7 +16,7 @@ const SongSearch = () => {
 		axiosWithAuth()
 			.post("/findsongsquery", search)
 			.then((res) => {
-				console.log("search results", res.data);
+				// console.log("search results", res.data);
 				let searched = res.data;
 				setState({ saved_songs: searched });
 			})
@@ -25,11 +25,11 @@ const SongSearch = () => {
 
 	const handleChange = (e) => {
 		setSearch({ ...search, [e.target.name]: e.target.value });
-		console.log('search text', search)
+		// console.log('search text', search)
 	};
 
 	function openFaves() {
-		console.log('hello from openFaves')
+		// console.log('hello from openFaves')
 		document.getElementById('Faves').style.display = 'block';
 		document.getElementById('SongUI').style.display = 'none';
 	};

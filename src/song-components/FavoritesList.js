@@ -35,7 +35,7 @@ const Close = styled.div`
 `;
 
 function openFaves() {
-    console.log('hello from openFaves')
+    // console.log('hello from openFaves')
     document.getElementById('Faves').style.display = 'block';
     document.getElementById('SongUI').style.display = 'none';
 };

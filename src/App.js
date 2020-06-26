@@ -21,7 +21,7 @@ function App() {
 		axiosWithAuth()
 			.delete("")
 			.then((res) => {
-				console.log(res);
+				// console.log(res);
 			})
 			.catch((err) => console.log(err.message, err.response));
 	};
