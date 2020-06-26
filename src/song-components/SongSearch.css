@@ -30,6 +30,22 @@
 	font-size: 15px;
 }
 
+.search-imgs {
+  padding: 5px;
+  height: auto;
+  max-width: 150px;
+  margin: 0 auto;
+}
+
+.search-name {
+  padding: 5px;
+}
+
+.search-results{
+  display:flex;
+  flex-direction: column;
+}
+
 button {
 	width: 250px;
 	padding: 5px;

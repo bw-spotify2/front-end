@@ -29,9 +29,15 @@ const SongSearch = () => {
 		console.log("search text", search);
 	};
 
+	function openFaves() {
+		console.log('hello from openFaves')
+		document.getElementById('Faves').style.display = 'block';
+		document.getElementById('SongUI').style.display = 'none';
+	};
+
 	return (
 		<div className="search-container">
-			<button classname="saved-list-btn" type="submit">
+			<button classname="saved-list-btn" type="submit" onClick={openFaves}>
 				View Saved List
 			</button>
 			<br />
@@ -66,12 +72,13 @@ const SongSearch = () => {
 			</form>
 			<hr />
 
-			<div className="search-results">
-				{state.saved_songs.map((song) => (
-					<p key={song.id}>
-						{song.name}
-						<i className="fas fa-plus-circle"></i>
-					</p>
+			
+				{state.saved_songs.map(song => (
+					<div className='search-results' key={song.id}>
+						<div className='search-imgs'><img src={song.album.images[1].url} alt='album-artwork' /></div>
+						<div className='search-name'>{song.album.artists[0].name}<br/><br/>{song.name}<hr/></div>
+					</div>
+
 				))}
 			</div>
 		</div>
