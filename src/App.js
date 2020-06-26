@@ -7,6 +7,7 @@ import NavBar from "./Nav";
 import SignIn from "./SignIn";
 import Songs from "./Songs";
 import About from "./About";
+import { UserController } from "./context/UserContext";
 
 const Wrapper = styled.div`
 	margin: 0.5rem;
@@ -14,8 +15,6 @@ const Wrapper = styled.div`
 
 function App() {
 	const [track, setTrack] = useState([]);
-
-	console.log('initial data', TrackHandler)
 
 	const songDelete = () => {
 		axiosWithAuth()
@@ -28,16 +27,18 @@ function App() {
 
 	return (
 		<TrackHandler>
-			<Router>
-				<Wrapper className="App">
-					<NavBar />
-					<Switch>
-						<Route exact path="/" component={SignIn}></Route>
-						<Route path="/songs" component={Songs}></Route>
-						<Route path="/about" component={About}></Route>
-					</Switch>
-				</Wrapper>
-			</Router>
+			<UserController>
+				<Router>
+					<Wrapper className="App">
+						<NavBar />
+						<Switch>
+							<Route exact path="/" component={SignIn}></Route>
+							<Route path="/songs" component={Songs}></Route>
+							<Route path="/about" component={About}></Route>
+						</Switch>
+					</Wrapper>
+				</Router>
+			</UserController>
 		</TrackHandler>
 	);
 }
