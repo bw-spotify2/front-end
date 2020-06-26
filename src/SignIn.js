@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
+import TrackContext from "./context/TrackContext";
 import styled from "styled-components";
 import axiosWithAuth from "./utils/axiosWithAuth";
 
@@ -29,7 +30,6 @@ const Submission = styled.div`
 	border-radius: 5px;
 	padding: 0.5rem;
 	&:hover {
-		
 		color: black;
 		font-weight: 600;
 	}
@@ -47,6 +47,8 @@ const FormTitle = styled.div`
 `;
 
 const SignIn = () => {
+	const [state, setState] = useContext(TrackContext);
+	console.log("users state", state);
 	const { push } = useHistory();
 	const [user, setUser] = useState({
 		username: "",
@@ -65,8 +67,9 @@ const SignIn = () => {
 		axiosWithAuth()
 			.post("/login", user)
 			.then((res) => {
-				console.log('postlogin',res);
+				console.log("postlogin", res);
 				localStorage.setItem("token", res.data.payload);
+				setState({ saved_songs: [], users: res.data.username });
 				push("/songs");
 			})
 			.catch((err) => console.log(err.message, err.response));
@@ -97,7 +100,9 @@ const SignIn = () => {
 			<Submission>
 				<button type="submit">Sign In</button>
 			</Submission>
-			<h5>New? Register <Link>Here</Link></h5>
+			<h5>
+				New? Register <Link>Here</Link>
+			</h5>
 		</FormContainer>
 	);
 };

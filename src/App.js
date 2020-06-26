@@ -15,8 +15,6 @@ const Wrapper = styled.div`
 function App() {
 	const [track, setTrack] = useState([]);
 
-	console.log('initial data', TrackHandler)
-
 	const songDelete = () => {
 		axiosWithAuth()
 			.delete("")

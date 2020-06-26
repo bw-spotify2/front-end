@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import { Line } from 'react-chartjs-2';
-import FavoritesList from './FavoritesList';
+
 
 
 const Add = styled.div`
@@ -90,15 +90,15 @@ function CarouselComponent() {
         console.log('hello')
     }
 
-    useEffect(() => {
-        axios
-            .get('https://cors-anywhere.herokuapp.com/https://spotify-api-project.herokuapp.com/api/frontend/savedsongs')
-            .then((res) => {
-                console.log('response from saved songs', res.data);
-                setSongs(res.data)
-            })
-            .catch((err) => console.log('error connecting to saved songs'))
-    }, []);
+    // useEffect(() => {
+    //     axios
+    //         .get('https://cors-anywhere.herokuapp.com/https://spotify-api-project.herokuapp.com/api/frontend/savedsongs')
+    //         .then((res) => {
+    //             console.log('response from saved songs', res.data);
+    //             setSongs(res.data)
+    //         })
+    //         .catch((err) => console.log('error connecting to saved songs'))
+    // }, []);
 
 
     return(
