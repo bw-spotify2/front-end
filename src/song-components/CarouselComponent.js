@@ -90,21 +90,22 @@ function CarouselComponent() {
         console.log('hello')
     }
 
-    // useEffect(() => {
-    //     axios
-    //         .get('https://cors-anywhere.herokuapp.com/https://spotify-api-project.herokuapp.com/api/frontend/savedsongs')
-    //         .then((res) => {
-    //             console.log('response from saved songs', res.data);
-    //             setSongs(res.data)
-    //         })
-    //         .catch((err) => console.log('error connecting to saved songs'))
-    // }, []);
+    useEffect(() => {
+        axios
+            .get('https://cors-anywhere.herokuapp.com/https://spotify-api-project.herokuapp.com/api/frontend/savedsongs')
+            .then((res) => {
+                console.log('response from saved songs', res.data);
+                setSongs(res.data)
+            })
+            .catch((err) => console.log('error connecting to saved songs'))
+    }, []);
 
 
     return(
         <>
                <Carousel centered dots>
                 {suggestedSongs.map((song) => {
+                    console.log('suggestedSongs', suggestedSongs)
                     const Graphs = () => {
                         const [chartData, setChartData] = useState({})
                     
@@ -151,9 +152,6 @@ function CarouselComponent() {
                                         <a target='blank' href={song.song_url}><img src="https://i.imgur.com/UMlMHPP.png" alt="listen-on-spotify" /> </a>
                                     </Listen>
                                 </div>
-                                <Add >
-                                <p>+ Favorites</p>
-                                </Add>
                             </Title>
                                 
                             < hr/>
