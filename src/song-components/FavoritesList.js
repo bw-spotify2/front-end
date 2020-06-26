@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import TrackContext from "../context/TrackContext";
+import UserContext from "../context/UserContext";
 import styled from "styled-components";
 import "./SongSearch.css";
 import axiosWithAuth from "../utils/axiosWithAuth";
@@ -47,19 +47,20 @@ function closeFaves() {
 }
 
 function FavoritesList() {
-	const [state, setState] = useContext(TrackContext);
-	const { users, saved_songs } = state;
-	console.log("fav list state", users);
+	const [currentUser, setCurrentUser] = useContext(UserContext);
+	const user = currentUser;
+
+	console.log("fav list state", user);
 
 	useEffect(() => {
 		axiosWithAuth()
-			.get(`/savedsongs/${users}`)
+			.get(`/savedsongs/${user}`)
 			.then((res) => {
 				console.log("users data", res);
 				const favTracks = res.data;
 			})
 			.catch((err) => console.log(err.message, err.response));
-	}, [users]);
+	}, [user]);
 	return (
 		<div id="Faves">
 			<CardWrapper>

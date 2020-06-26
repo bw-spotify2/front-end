@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
-import TrackContext from "./context/TrackContext";
+import UserContext from "./context/UserContext";
 import styled from "styled-components";
 import axiosWithAuth from "./utils/axiosWithAuth";
 
@@ -47,8 +47,8 @@ const FormTitle = styled.div`
 `;
 
 const SignIn = () => {
-	const [state, setState] = useContext(TrackContext);
-	console.log("users state", state);
+	const [currentUser, setCurrentUser] = useContext(UserContext);
+	
 	const { push } = useHistory();
 	const [user, setUser] = useState({
 		username: "",
@@ -69,7 +69,7 @@ const SignIn = () => {
 			.then((res) => {
 				console.log("postlogin", res);
 				localStorage.setItem("token", res.data.payload);
-				setState({ saved_songs: [], users: res.data.username });
+				setCurrentUser(res.data.username);
 				push("/songs");
 			})
 			.catch((err) => console.log(err.message, err.response));
