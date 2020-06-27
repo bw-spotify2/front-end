@@ -6,6 +6,7 @@ import styled from "styled-components";
 import NavBar from "./Nav";
 import SignIn from "./SignIn";
 import Songs from "./Songs";
+import About from './About';
 
 import { UserController } from "./context/UserContext";
 import FavoritesList from "./song-components/FavoritesList";
@@ -27,6 +28,7 @@ function App() {
 							<Route exact path="/" component={SignIn}></Route>
 							<Route path="/songs" component={Songs}></Route>
 							<Route path="/favorites" component={FavoritesList}></Route>
+							<Route path='/about' component={About}></Route>
 						</Switch>
 					</Wrapper>
 				</Router>

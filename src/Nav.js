@@ -35,7 +35,7 @@ function NavBar() {
 		<Nav>
 			<H1 id='app-header'>Spotify Song Suggester</H1>
 			<Link to='/'><NavLink>Home</NavLink></Link>
-			<Link to={{pathname:'https://kind-agnesi-0a960b.netlify.app/'}} target='blank'><NavLink>About</NavLink></Link>
+			<Link to='/about'><NavLink>About</NavLink></Link>
 			{/* Songs link is temporary so I can start working on the cards */}
 			<Link to="/songs"><NavLink>Songs</NavLink></Link>
 			
