@@ -55,15 +55,24 @@ function FavoritesList() {
 	const [faves, setFaves] = useState([]);
 
 	console.log("current user that's logged in", user);
+	// useEffect(() => {
+	// 	axiosWithAuth()
+	// 		.get(`/savedsongs/${user}`)
+	// 		.then((res) => {
+	// 			console.log("fav data", res.data);
+	// 			setFaves(res.data);
+	// 		})
+	// 		.catch((err) => console.log(err.message, err.response));
+	// }, [user]);
 	useEffect(() => {
 		axiosWithAuth()
-			.get(`/savedsongs/${user}`)
+			.get('/session')
 			.then((res) => {
 				console.log("fav data", res.data);
 				setFaves(res.data);
 			})
 			.catch((err) => console.log(err.message, err.response));
-	}, [user]);
+	}, []);
 
 	
 
