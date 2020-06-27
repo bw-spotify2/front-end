@@ -37,9 +37,10 @@ const Close = styled.div`
 `;
 
 function openFaves() {
-	console.log("hello from openFaves");
+	
 	document.getElementById("Faves").style.display = "block";
 	document.getElementById("SongUI").style.display = "none";
+	
 }
 
 function closeFaves() {
@@ -50,35 +51,37 @@ function closeFaves() {
 function FavoritesList() {
 	const [state, setState] = useContext(TrackContext);
 	const [currentUser, setCurrentUser] = useContext(UserContext);
-	const [fave, setFave] = useState([]);
+	const user = currentUser
+	const [faves, setFaves] = useState([]);
 
-	console.log("fav list state", currentUser);
-
+	console.log("current user that's logged in", currentUser);
 	useEffect(() => {
 		axiosWithAuth()
-			.get("/savedsongs")
+			.get(`/savedsongs/${user}`)
 			.then((res) => {
 				console.log("fav data", res.data);
-				setFave(res.data);
+				setFaves(res.data);
 			})
 			.catch((err) => console.log(err.message, err.response));
-	}, []);
+	}, [currentUser]);
 
-	const deleteFav = (id) => {
-		axiosWithAuth()
-			.delete("/savedsongs", id)
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((err) => console.log(err.message));
-	};
+	
+
+	// const deleteFav = (id) => {
+	// 	axiosWithAuth()
+	// 		.delete("/savedsongs", id)
+	// 		.then((res) => {
+	// 			console.log(res);
+	// 		})
+	// 		.catch((err) => console.log(err.message));
+	// };
 
 	return (
 		<div id="Faves">
 			<CardWrapper>
-				{/* <h1>{currentUser} 's Faves</h1> */}
+				{/* <h1>{user}'s Faves</h1> */}
 				<Close onClick={closeFaves}>Close</Close>
-				{fave.map((song) => (
+				{faves.map((song) => (
 					<div className="faves-container" key={song.id}>
 						<div className="faves-info">
 							<h4>
@@ -88,8 +91,7 @@ function FavoritesList() {
 								<br />
 								<i
 									className="fas fa-trash-alt"
-									style={{ color: "red", cursor: "pointer" }}
-									onClick={deleteFav}></i>
+									style={{ color: "red", cursor: "pointer" }}></i>
 							</h4>
 						</div>
 					</div>

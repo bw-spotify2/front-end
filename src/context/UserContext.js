@@ -5,7 +5,7 @@ const UserContext = createContext();
 
 export const UserController = ({ children }) => {
 	let initialState = {
-		user: [],
+		user: '',
 		
 	};
 

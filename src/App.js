@@ -6,8 +6,9 @@ import styled from "styled-components";
 import NavBar from "./Nav";
 import SignIn from "./SignIn";
 import Songs from "./Songs";
-import About from "./About";
+
 import { UserController } from "./context/UserContext";
+import FavoritesList from "./song-components/FavoritesList";
 
 const Wrapper = styled.div`
 	margin: 0.5rem;
@@ -15,15 +16,6 @@ const Wrapper = styled.div`
 
 function App() {
 	const [track, setTrack] = useState([]);
-
-	const songDelete = () => {
-		axiosWithAuth()
-			.delete("")
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((err) => console.log(err.message, err.response));
-	};
 
 	return (
 		<TrackHandler>
@@ -34,7 +26,7 @@ function App() {
 						<Switch>
 							<Route exact path="/" component={SignIn}></Route>
 							<Route path="/songs" component={Songs}></Route>
-							<Route path="/about" component={About}></Route>
+							<Route path="/favorites" component={FavoritesList}></Route>
 						</Switch>
 					</Wrapper>
 				</Router>

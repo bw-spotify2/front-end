@@ -95,7 +95,7 @@ function CarouselComponent() {
         axios
             .get('https://cors-anywhere.herokuapp.com/https://spotify-api-project.herokuapp.com/api/frontend/savedsongs')
             .then((res) => {
-                console.log('response from saved songs', res.data);
+                
                 setSongs(res.data)
             })
             .catch((err) => console.log('error connecting to saved songs'))

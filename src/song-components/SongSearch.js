@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import TrackContext from "../context/TrackContext";
 import UserContext from "../context/UserContext";
-
 
 import "./SongSearch.css";
 import FavoritesList from "./FavoritesList";
@@ -10,13 +10,13 @@ import FavoritesList from "./FavoritesList";
 const SongSearch = () => {
 	const [state, setState] = useContext(TrackContext);
 	const [currentUser] = useContext(UserContext);
+
 	console.log("song search state", state, currentUser);
 	const user = currentUser;
 
 	const [search, setSearch] = useState({
 		keyWords: "",
 	});
-	
 
 	const songSubmit = (e) => {
 		e.preventDefault();
@@ -37,28 +37,36 @@ const SongSearch = () => {
 	};
 
 	function openFaves() {
-		console.log("hello from openFaves");
 		document.getElementById("Faves").style.display = "block";
 		document.getElementById("SongUI").style.display = "none";
 	}
 
-	function addToFavorites() {
-
-		openFaves()
+	function addToFavorites(id) {
+		const SongId = id;
+		console.log("song id", SongId);
+		axiosWithAuth()
+			.post(`/savedsongs/${user}`, SongId)
+			.then((res) => {
+				console.log(res);
+				openFaves();
+			})
+			.catch((err) => console.log(err.message, err.response));
 	}
 
 	return (
 		<div className="search-container">
+			<Link to="/favorites"></Link>
 			<button classname="saved-list-btn" type="submit" onClick={openFaves}>
 				View Saved List
 			</button>
+
 			<br />
 			<h4>
 				<i className="fas fa-music"></i>
 				<span> ..</span> or{" "}
 			</h4>
 			<img
-				class="search-img"
+				className="search-img"
 				style={{
 					height: "100px",
 					borderRadius: "50%",
@@ -66,7 +74,7 @@ const SongSearch = () => {
 				}}
 				src="https://developer.spotify.com/assets/branding-guidelines/icon1@2x.png"
 				alt="spotify logo"></img>
-			<h3 class="search-header">
+			<h3 className="search-header">
 				Song <span>Finder</span>
 			</h3>
 			<form className="search-form" onSubmit={songSubmit}>
@@ -86,7 +94,7 @@ const SongSearch = () => {
 
 			{state.saved_songs.map((song) => (
 				<div className="search-results" key={song.id}>
-					<div className="faves-button" onClick={addToFavorites}>
+					<div className="faves-button" onClick={() => addToFavorites(song.id)}>
 						+ faves
 					</div>
 					<div className="search-imgs">
