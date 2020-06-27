@@ -150,7 +150,7 @@ function CarouselComponent() {
                                 <div>
                                     <H3>{song.song_name}</H3>
                                     <Listen>  
-                                        <a target='blank' href={song.song_url}><img src="https://i.imgur.com/UMlMHPP.png" alt="listen-on-spotify" /> </a>
+                                        <a target='blank' href={song.song_url}><img src="./img/listen-spotify.png" alt="listen-on-spotify" /> </a>
                                     </Listen>
                                 </div>
                             </Title>

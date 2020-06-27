@@ -54,7 +54,7 @@ function FavoritesList() {
 	const user = currentUser
 	const [faves, setFaves] = useState([]);
 
-	console.log("current user that's logged in", currentUser);
+	console.log("current user that's logged in", user);
 	useEffect(() => {
 		axiosWithAuth()
 			.get(`/savedsongs/${user}`)
@@ -63,7 +63,7 @@ function FavoritesList() {
 				setFaves(res.data);
 			})
 			.catch((err) => console.log(err.message, err.response));
-	}, [currentUser]);
+	}, [user]);
 
 	
 
